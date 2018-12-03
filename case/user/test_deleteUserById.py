@@ -5,14 +5,13 @@ import sys
 import os
 import json
 import random
-import string
 from util.config import config, Config, DATA_PATH
 from util.mysql_client import mysql_client
 from util.https_client import HTTPsClient
 from util.log import logger
 
 
-class insertUser(unittest.TestCase):
+class deleteUserById(unittest.TestCase):
     # 错误编码
     __result_code = config.read_data("api_result_code")
     # 当前模块名
@@ -26,6 +25,16 @@ class insertUser(unittest.TestCase):
     # 当前接口的参数
     __params = __config.read_data(__method)
 
+    @classmethod
+    def setUpClass(cls):
+        params = {
+            "name": "test",
+            "password": "123456"
+        }
+        url = config.get("server", "host") + cls.__module + '/' + 'insertUser'
+        result = HTTPsClient(url).send(params)
+        deleteUserById.user_id = result["data"]["id"]
+
     def send(self, params):
         result = HTTPsClient(self.__url).send(params)
         # 直接输出字典会有中文乱码的情况
@@ -34,53 +43,45 @@ class insertUser(unittest.TestCase):
         logger.debug(json.dumps(result, ensure_ascii=False))
         return result
 
-    def setUp(self):
-        insertUser.user_id = None
-
-    def tearDown(self):
-        params = {
-            "id": insertUser.user_id
-        }
-        url = config.get("server", "host") + self.__module + '/' + 'deleteUserById'
-        result = HTTPsClient(url).send(params)
-        logger.debug(json.dumps(params, ensure_ascii=False))
-        logger.debug(json.dumps(url, ensure_ascii=False))
-        logger.debug(json.dumps(result, ensure_ascii=False))
-
-
-
     def test_success(self):
         '''测试成功'''
         params = self.__params.copy()
-        params['name'] = ''.join(random.sample(string.ascii_letters + string.digits, 20))
+        params['id'] = deleteUserById.user_id
         response = self.send(params)
-        insertUser.user_id = response['data']['id']
         code_result = response['code']
         self.assertEqual(str(code_result), self.__result_code["STATUS_SUCCESS_CODE"])
 
-    def test_name_is_None(self):
-        '''name参数为空'''
+    def test_id_not_exist(self):
+        '''id不存在'''
         params = self.__params.copy()
-        params['name'] = None
+        params['id'] = 12345678910
         response = self.send(params)
         code_result = response['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_INSERT_FAIL_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["USER_DELETE_FAIL_CODE"])
 
-    def test_name_is_empty(self):
-        '''name参数为None'''
+    def test_id_type_is_string(self):
+        '''id类型为string类型'''
         params = self.__params.copy()
-        params['name'] = ""
+        params['id'] = "test"
         response = self.send(params)
         code_result = response['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_INSERT_FAIL_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["USER_DELETE_FAIL_CODE"])
 
-    def test_name_is_del(self):
-        '''name参数为None'''
+    def test_id_is_None(self):
+        '''id为None'''
         params = self.__params.copy()
-        del params['name']
+        params['id'] = None
         response = self.send(params)
         code_result = response['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_INSERT_FAIL_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["USER_DELETE_FAIL_CODE"])
+
+    def test_id_is_empty(self):
+        '''id为空'''
+        params = self.__params.copy()
+        params['id'] = ""
+        response = self.send(params)
+        code_result = response['code']
+        self.assertEqual(str(code_result), self.__result_code["USER_DELETE_FAIL_CODE"])
 
 
 if __name__ == '__main__':

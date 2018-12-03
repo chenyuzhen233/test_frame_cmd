@@ -1,17 +1,15 @@
 #!/usr/bin/env python
-#coding=utf-8
+# coding=utf-8
 import unittest
 import sys
 import os
 import json
-import random
 from util.config import config, Config, DATA_PATH
-from util.mysql_client import mysql_client
 from util.https_client import HTTPsClient
 from util.log import logger
 
 
-class selectUserById(unittest.TestCase):
+class selectAllUser(unittest.TestCase):
     # 错误编码
     __result_code = config.read_data("api_result_code")
     # 当前模块名
@@ -36,35 +34,35 @@ class selectUserById(unittest.TestCase):
     def test_success(self):
         '''测试成功'''
         code_result = self.send(self.__params)['code']
-        self.assertEqual(str(code_result), self.__result_code["STATUS_SUSSECC"])
+        self.assertEqual(str(code_result), self.__result_code["STATUS_SUCCESS_CODE"])
 
-    def test_id_not_exist(self):
-        '''id不存在'''
+    def test_token_not_exist(self):
+        '''token不存在'''
         params = self.__params.copy()
-        params['id'] = 12345678910
+        params['token'] = 12345678910
         code_result = self.send(params)['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_NOT_EXIST_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["TOKEN_NOT_EXIST_CODE"])
 
-    def test_id_type_is_string(self):
-        '''id类型为string类型'''
+    def test_token_expired(self):
+        '''token过期'''
         params = self.__params.copy()
-        params['id'] = "test"
+        params['token'] = "123456"
         code_result = self.send(params)['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_NOT_EXIST_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["TOKEN_INVALID_CODE"])
 
-    def test_id_is_None(self):
-        '''id类型为string类型'''
+    def test_token_is_None(self):
+        '''token为None'''
         params = self.__params.copy()
-        params['id'] = None
+        params['token'] = None
         code_result = self.send(params)['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_NOT_EXIST_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["TOKEN_NOT_EXIST_CODE"])
 
-    def test_id_is_empty(self):
-        '''id类型为string类型'''
+    def test_token_is_empty(self):
+        '''token为空'''
         params = self.__params.copy()
-        params['id'] = ""
+        params['token'] = ""
         code_result = self.send(params)['code']
-        self.assertEqual(str(code_result), self.__result_code["USER_NOT_EXIST_CODE"])
+        self.assertEqual(str(code_result), self.__result_code["TOKEN_NOT_EXIST_CODE"])
 
 
 if __name__ == '__main__':

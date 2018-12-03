@@ -1,0 +1,88 @@
+[2018-12-03 14:47:17][INFO] [case] id为None
+[2018-12-03 14:47:17][DEBUG] {"id": null}
+[2018-12-03 14:47:17][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:17][INFO] ok test_id_is_None (user.test_deleteUserById.deleteUserById)
+[2018-12-03 14:47:17][INFO] [case] id为空
+[2018-12-03 14:47:17][DEBUG] {"id": ""}
+[2018-12-03 14:47:17][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:17][INFO] ok test_id_is_empty (user.test_deleteUserById.deleteUserById)
+[2018-12-03 14:47:17][INFO] [case] id不存在
+[2018-12-03 14:47:17][DEBUG] {"id": 12345678910}
+[2018-12-03 14:47:17][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:17][INFO] ok test_id_not_exist (user.test_deleteUserById.deleteUserById)
+[2018-12-03 14:47:17][INFO] [case] id类型为string类型
+[2018-12-03 14:47:17][DEBUG] {"id": "test"}
+[2018-12-03 14:47:17][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:17][INFO] ok test_id_type_is_string (user.test_deleteUserById.deleteUserById)
+[2018-12-03 14:47:17][INFO] [case] 测试成功
+[2018-12-03 14:47:18][DEBUG] {"id": 27}
+[2018-12-03 14:47:18][DEBUG] {"msg": "success", "code": 0, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_success (user.test_deleteUserById.deleteUserById)
+[2018-12-03 14:47:18][INFO] [case] name参数为空
+[2018-12-03 14:47:18][DEBUG] {"password": "123456", "name": null}
+[2018-12-03 14:47:18][DEBUG] {"msg": "新增用户失败", "code": 10002, "data": null}
+[2018-12-03 14:47:18][DEBUG] {"id": null}
+[2018-12-03 14:47:18][DEBUG] "http://127.0.0.1:5000/user/deleteUserById"
+[2018-12-03 14:47:18][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_name_is_None (user.test_insertUser.insertUser)
+[2018-12-03 14:47:18][INFO] [case] name参数为None
+[2018-12-03 14:47:18][DEBUG] {"password": "123456"}
+[2018-12-03 14:47:18][DEBUG] {"msg": "新增用户失败", "code": 10002, "data": null}
+[2018-12-03 14:47:18][DEBUG] {"id": null}
+[2018-12-03 14:47:18][DEBUG] "http://127.0.0.1:5000/user/deleteUserById"
+[2018-12-03 14:47:18][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_name_is_del (user.test_insertUser.insertUser)
+[2018-12-03 14:47:18][INFO] [case] name参数为None
+[2018-12-03 14:47:18][DEBUG] {"password": "123456", "name": ""}
+[2018-12-03 14:47:18][DEBUG] {"msg": "新增用户失败", "code": 10002, "data": null}
+[2018-12-03 14:47:18][DEBUG] {"id": null}
+[2018-12-03 14:47:18][DEBUG] "http://127.0.0.1:5000/user/deleteUserById"
+[2018-12-03 14:47:18][DEBUG] {"msg": "删除用户失败", "code": 10003, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_name_is_empty (user.test_insertUser.insertUser)
+[2018-12-03 14:47:18][INFO] [case] 测试成功
+[2018-12-03 14:47:18][DEBUG] {"password": "123456", "name": "gca1F8LmnieAdflCX9S3"}
+[2018-12-03 14:47:18][DEBUG] {"msg": "success", "code": 0, "data": {"id": 28, "name": "gca1F8LmnieAdflCX9S3"}}
+[2018-12-03 14:47:18][DEBUG] {"id": 28}
+[2018-12-03 14:47:18][DEBUG] "http://127.0.0.1:5000/user/deleteUserById"
+[2018-12-03 14:47:18][DEBUG] {"msg": "success", "code": 0, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_success (user.test_insertUser.insertUser)
+[2018-12-03 14:47:18][INFO] [case] 测试成功
+[2018-12-03 14:47:18][DEBUG] {"token": "asd1234dfg"}
+[2018-12-03 14:47:18][DEBUG] {"msg": "success", "code": 0, "data": [{"id": 1, "name": "test"}, {"id": 2, "name": "sam"}]}
+[2018-12-03 14:47:18][INFO] ok test_success (user.test_selectAllUser.selectAllUser)
+[2018-12-03 14:47:18][INFO] [case] token过期
+[2018-12-03 14:47:18][DEBUG] {"token": "123456"}
+[2018-12-03 14:47:18][DEBUG] {"msg": "token失效", "code": 20001, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_token_expired (user.test_selectAllUser.selectAllUser)
+[2018-12-03 14:47:18][INFO] [case] token为None
+[2018-12-03 14:47:18][DEBUG] {"token": null}
+[2018-12-03 14:47:18][DEBUG] {"msg": "token不存在", "code": 20002, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_token_is_None (user.test_selectAllUser.selectAllUser)
+[2018-12-03 14:47:18][INFO] [case] token为空
+[2018-12-03 14:47:18][DEBUG] {"token": ""}
+[2018-12-03 14:47:18][DEBUG] {"msg": "token不存在", "code": 20002, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_token_is_empty (user.test_selectAllUser.selectAllUser)
+[2018-12-03 14:47:18][INFO] [case] token不存在
+[2018-12-03 14:47:18][DEBUG] {"token": 12345678910}
+[2018-12-03 14:47:18][DEBUG] {"msg": "token不存在", "code": 20002, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_token_not_exist (user.test_selectAllUser.selectAllUser)
+[2018-12-03 14:47:18][INFO] [case] id为None
+[2018-12-03 14:47:18][DEBUG] {"id": null}
+[2018-12-03 14:47:18][DEBUG] {"msg": "该用户不存在", "code": 10001, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_id_is_None (user.test_selectUserById.selectUserById)
+[2018-12-03 14:47:18][INFO] [case] id为空
+[2018-12-03 14:47:18][DEBUG] {"id": ""}
+[2018-12-03 14:47:18][DEBUG] {"msg": "该用户不存在", "code": 10001, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_id_is_empty (user.test_selectUserById.selectUserById)
+[2018-12-03 14:47:18][INFO] [case] id不存在
+[2018-12-03 14:47:18][DEBUG] {"id": 12345678910}
+[2018-12-03 14:47:18][DEBUG] {"msg": "该用户不存在", "code": 10001, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_id_not_exist (user.test_selectUserById.selectUserById)
+[2018-12-03 14:47:18][INFO] [case] id类型为string类型
+[2018-12-03 14:47:18][DEBUG] {"id": "test"}
+[2018-12-03 14:47:18][DEBUG] {"msg": "该用户不存在", "code": 10001, "data": null}
+[2018-12-03 14:47:18][INFO] ok test_id_type_is_string (user.test_selectUserById.selectUserById)
+[2018-12-03 14:47:18][INFO] [case] 测试成功
+[2018-12-03 14:47:18][DEBUG] {"id": "1"}
+[2018-12-03 14:47:18][DEBUG] {"msg": "success", "code": 0, "data": {"id": 1, "name": "test"}}
+[2018-12-03 14:47:18][INFO] ok test_success (user.test_selectUserById.selectUserById)
